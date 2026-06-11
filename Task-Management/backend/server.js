@@ -24,6 +24,16 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/admin", adminRoutes);
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://your-app.vercel.app",
+      "https://your-app.netlify.app",
+    ],
+    credentials: true,
+  })
+);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
