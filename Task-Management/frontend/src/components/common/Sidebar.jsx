@@ -1,46 +1,62 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 function Sidebar() {
   const { user } = useAuth();
 
   return (
-    <div className="w-64 min-h-screen bg-slate-900 text-white p-5">
-      <h2 className="text-2xl font-bold mb-8">
+    <div className="h-screen w-64 bg-slate-900 text-white p-6 overflow-y-auto">
+      <h2 className="text-2xl font-bold mb-10">
         Task Manager
       </h2>
 
-      <div className="flex flex-col gap-4">
+      <nav className="space-y-2">
         {user?.role === "Admin" ? (
           <>
-            <Link to="/admin">
+            <NavLink
+              to="/admin"
+              className="block rounded-lg px-4 py-3 hover:bg-slate-800 transition"
+            >
               Dashboard
-            </Link>
+            </NavLink>
 
-            <Link to="/admin/users">
+            <NavLink
+              to="/admin/users"
+              className="block rounded-lg px-4 py-3 hover:bg-slate-800 transition"
+            >
               User Management
-            </Link>
+            </NavLink>
 
-            <Link to="/admin/tasks">
+            <NavLink
+              to="/admin/tasks"
+              className="block rounded-lg px-4 py-3 hover:bg-slate-800 transition"
+            >
               Task Monitoring
-            </Link>
+            </NavLink>
 
-            <Link to="/admin/logs">
+            <NavLink
+              to="/admin/logs"
+              className="block rounded-lg px-4 py-3 hover:bg-slate-800 transition"
+            >
               Activity Logs
-            </Link>
+            </NavLink>
 
-            <Link to="/admin/analytics">
+            <NavLink
+              to="/admin/analytics"
+              className="block rounded-lg px-4 py-3 hover:bg-slate-800 transition"
+            >
               Analytics
-            </Link>
+            </NavLink>
           </>
         ) : (
-          <>
-            <Link to="/dashboard">
-              My Tasks
-            </Link>
-          </>
+          <NavLink
+            to="/dashboard"
+            className="block rounded-lg px-4 py-3 hover:bg-slate-800 transition"
+          >
+            My Tasks
+          </NavLink>
         )}
-      </div>
+      </nav>
     </div>
   );
 }
